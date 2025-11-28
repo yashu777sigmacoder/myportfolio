@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Resume</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-gradient: linear-gradient(135deg, #141e30, #243b55);
+    --card-bg: rgba(17, 24, 39, 0.92);
+    --accent: #4ade80;      /* soft green */
+    --accent-soft: rgba(74, 222, 128, 0.12);
+    --accent-strong: #22c55e;
+    --text-main: #f9fafb;
+    --text-muted: #9ca3af;
+    --border-soft: rgba(156, 163, 175, 0.35);
+    --shadow-soft: 0 20px 45px rgba(0, 0, 0, 0.6);
+    --radius-xl: 1.5rem;
+    --transition-fast: 0.2s ease-in-out;
+}
+
+/* Body */
+body {
+    min-height: 100vh;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(16px);
+    background: linear-gradient(to right, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.8));
+    border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+    padding: 0.8rem 7vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.nav a {
+    margin-left: 1.6rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    position: relative;
+    padding-bottom: 0.2rem;
+    transition: color var(--transition-fast);
+}
+
+.nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--accent);
+    transition: width var(--transition-fast);
+}
+
+.nav a:hover {
+    color: var(--text-main);
+}
+
+.nav a:hover::after,
+.nav a.active::after {
+    width: 100%;
+}
+
+.nav a.active {
+    color: var(--accent);
+}
+
+/* Main */
+.main-content {
+    flex: 1;
+    padding: 2.5rem 7vw 3rem;
+}
+
+.main-content.narrow {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Hero section */
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.7fr);
+    gap: 2.2rem;
+    align-items: stretch;
+}
+
+.hero-text {
+    padding: 2rem;
+    border-radius: var(--radius-xl);
+    background: radial-gradient(circle at top left, rgba(74, 222, 128, 0.08), transparent 55%),
+                rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    box-shadow: var(--shadow-soft);
+}
+
+.greeting {
+    font-size: 0.9rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 0.6rem;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.1rem, 3vw, 2.7rem);
+    margin-bottom: 0.4rem;
+}
+
+.hero-text h1 span {
+    color: var(--accent);
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    margin-bottom: 1.4rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 999px;
+    padding: 0.55rem 1.3rem;
+    font-size: 0.9rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    transition: background var(--transition-fast), border var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast);
+}
+
+.btn.primary {
+    background: var(--accent);
+    color: #022c22;
+    box-shadow: 0 14px 30px rgba(34, 197, 94, 0.4);
+}
+
+.btn.primary:hover {
+    background: var(--accent-strong);
+    transform: translateY(-1px);
+    box-shadow: 0 18px 40px rgba(34, 197, 94, 0.6);
+}
+
+.btn.outline {
+    background: transparent;
+    color: var(--text-main);
+    border-color: rgba(148, 163, 184, 0.6);
+}
+
+.btn.outline:hover {
+    border-color: var(--accent);
+    background: rgba(15, 23, 42, 0.8);
+}
+
+/* Hero card */
+.hero-card {
+    padding: 1.8rem 1.6rem;
+    border-radius: var(--radius-xl);
+    background: rgba(15, 23, 42, 0.96);
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    box-shadow: var(--shadow-soft);
+}
+
+.hero-card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.hero-card ul {
+    list-style: none;
+}
+
+.hero-card li {
+    font-size: 0.95rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px dashed rgba(75, 85, 99, 0.7);
+}
+
+.hero-card li:last-child {
+    border-bottom: none;
+}
+
+.hero-card strong {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+/* Generic section & cards */
+.section {
+    margin-top: 2.4rem;
+}
+
+.section.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.6rem;
+}
+
+.card {
+    padding: 1.5rem 1.4rem;
+    border-radius: 1.3rem;
+    background: rgba(15, 23, 42, 0.96);
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.8);
+}
+
+.card h3 {
+    font-size: 1.02rem;
+    margin-bottom: 0.7rem;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Tags */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+}
+
+.tag {
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid rgba(74, 222, 128, 0.45);
+}
+
+/* Footer */
+.site-footer {
+    padding: 1rem 7vw 1.4rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(148, 163, 184, 0.35);
+    background: rgba(15, 23, 42, 0.96);
+    backdrop-filter: blur(10px);
+}
+
+/* Resume page */
+.page-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.6rem;
+}
+
+.page-title h1 {
+    font-size: 1.7rem;
+}
+
+.resume-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-bottom: 1.2rem;
+}
+
+.resume-header h2 {
+    font-size: 1.4rem;
+}
+
+.resume-contact {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-align: right;
+}
+
+.divider {
+    border: none;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+    margin: 1.1rem 0 1.4rem;
+}
+
+.resume-section {
+    margin-bottom: 1.6rem;
+}
+
+.resume-section h3 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+}
+
+.resume-section p {
+    font-size: 0.93rem;
+    color: var(--text-main);
+}
+
+.timeline-item {
+    margin-bottom: 0.7rem;
+}
+
+.timeline-item h4 {
+    font-size: 0.96rem;
+}
+
+.muted {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 0.15rem;
+}
+
+.list-two-column {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.3rem 1.5rem;
+    font-size: 0.93rem;
+}
+
+.styled-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.styled-list li {
+    font-size: 0.93rem;
+    padding-left: 1.1rem;
+    position: relative;
+    color: var(--text-main);
+    margin-bottom: 0.25rem;
+}
+
+.styled-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+}
+
+/* Align right */
+.align-right {
+    text-align: right;
+    margin-top: 0.6rem;
+}
+
+/* Bio-data page */
+.biodata-card {
+    margin-bottom: 1.4rem;
+    padding: 1.3rem 1.2rem 1.1rem;
+    border-radius: 1.3rem;
+    background: rgba(15, 23, 42, 0.96);
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.8);
+}
+
+.biodata-card h2 {
+    font-size: 1.05rem;
+    margin-bottom: 0.8rem;
+}
+
+.bio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0.4rem 1.5rem;
+    font-size: 0.93rem;
+}
+
+.label {
+    color: var(--text-muted);
+    margin-right: 0.2rem;
+}
+
+.bio-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    overflow: hidden;
+    border-radius: 0.9rem;
+}
+
+.bio-table thead {
+    background: rgba(15, 23, 42, 0.9);
+}
+
+.bio-table th,
+.bio-table td {
+    padding: 0.6rem 0.7rem;
+    border-bottom: 1px solid rgba(55, 65, 81, 0.8);
+}
+
+.bio-table th {
+    text-align: left;
+    font-weight: 500;
+}
+
+.bio-table tbody tr:nth-child(even) {
+    background: rgba(15, 23, 42, 0.7);
+}
+
+.bio-bottom {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    margin-top: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .site-header {
+        padding-inline: 5vw;
+    }
+
+    .main-content {
+        padding-inline: 5vw;
+    }
+
+    .hero {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .resume-header {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .resume-contact {
+        text-align: left;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav a {
+        margin-left: 1rem;
+        font-size: 0.85rem;
+    }
+
+    .hero-text,
+    .hero-card,
+    .card,
+    .biodata-card {
+        padding: 1.2rem 1.05rem;
+    }
+
+    .page-title h1 {
+        font-size: 1.4rem;
+    }
+}
+/* ===== Certificates gallery styles ===== */
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 0.8rem;
+}
+
+.cert-card {
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    border-radius: 0.9rem;
+    padding: 0.6rem;
+    box-shadow: 0 10px 28px rgba(2,6,23,0.6);
+    text-align: center;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.cert-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 0.6rem;
+    display: block;
+    margin-bottom: 0.6rem;
+    cursor: pointer;
+    border: 1px solid rgba(148,163,184,0.18);
+}
+
+.cert-card figcaption {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Hover effect */
+.cert-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(2,6,23,0.7);
+}
+
+/* ===== Lightbox (modal) ===== */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    display: none; /* visible when active */
+    align-items: center;
+    justify-content: center;
+    background: rgba(2,6,23,0.75);
+    z-index: 1000;
+    padding: 2rem;
+}
+
+.lightbox[aria-hidden="false"] {
+    display: flex;
+}
+
+.lightbox-content {
+    max-width: 1100px;
+    width: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(17,24,39,0.98), rgba(10,14,20,0.98));
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+    padding: 1rem;
+    display: grid;
+    gap: 0.6rem;
+    align-items: center;
+    justify-items: center;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.6);
+}
+
+.lightbox-caption {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    text-align: center;
+    padding: 0.2rem 1rem;
+}
+
+.lightbox-close {
+    position: absolute;
+    right: 2.4rem;
+    top: 2.2rem;
+    background: transparent;
+    color: var(--text-main);
+    border: none;
+    font-size: 1.05rem;
+    cursor: pointer;
+    padding: 0.2rem 0.6rem;
+}
+
+.lightbox-download {
+    text-decoration: none;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    border: 1px solid rgba(148,163,184,0.35);
+}
+
+/* Small screens: adjust image height in cards */
+@media (max-width: 600px) {
+    .cert-card img {
+        height: 130px;
+    }
+
+    .lightbox-content {
+        padding: 0.6rem;
+    }
+
+    .lightbox-close {
+        right: 1rem;
+        top: 1rem;
+    }
+}
+    </style>
+</head>
+<body>
+<header class="site-header">
+    <div class="logo">My<span>Portfolio</span></div>
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="resume.html" class="active">Resume</a>
+        <a href="biodata.html">Bio-Data</a>
+    </nav>
+</header>
+
+<main class="main-content narrow">
+    <section class="section">
+        <div class="page-title">
+            <h1>Resume</h1>
+            <button class="btn primary" id="downloadBtn">Download as PDF</button>
+        </div>
+
+        <div class="resume-header">
+            <div>
+                <h2>Yashraj KS</h2>
+                <p class="subtitle">Aspiring Software Engineer</p>
+            </div>
+            <div class="resume-contact">
+                <p>Email: yashrajsv3777@gmail.com</p>
+                <p>Phone: +91 9916640425</p>
+                <p>Location: Shimogga, India</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <section class="resume-section">
+            <h3>Career Objective</h3>
+            <p>
+                To obtain a challenging position in a reputed organization where I can utilize my technical,
+                analytical and problem-solving skills while continuously learning and growing.
+            </p>
+        </section>
+
+        <section class="resume-section">
+            <h3>Education</h3>
+            <div class="timeline-item">
+                <h4>B.Tech in Computer Science</h4>
+                <p class="muted">JNNCE | 2023 – 2027 | CGPA: 9.5/10</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Higher Secondary (XII)</h4>
+                <p class="muted">Vidyabharathi | 2020 | 82%</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Secondary (X)</h4>
+                <p class="muted">BVB | 2018 | 92.8%</p>
+            </div>
+        </section>
+
+        <section class="resume-section">
+            <h3>Technical Skills</h3>
+            <ul class="list-two-column">
+                <li>Programming: Java, C </li>
+                <li>Web: HTML5, CSS3, Basic JavaScript</li>
+                <li>Database: MySQL / SQL</li>
+                <li>Tools: VS Code, Git </li>
+            </ul>
+        </section>
+
+        <section class="resume-section">
+            <h3>Projects</h3>
+            <div class="timeline-item">
+                <h4>Library Management System (Java + SQL)</h4>
+                <p class="muted">Academic Project</p>
+                <p>
+                    Developed a console-based application to manage books, students, and issue/return transactions
+                    using Java and MySQL database.
+                </p>
+            </div>
+            <div class="timeline-item">
+                <h4>Personal Portfolio Website</h4>
+                <p class="muted">Self Project</p>
+                <p>
+                    Built a responsive multi-page website using HTML, CSS and JavaScript to showcase resume and bio-data.
+                </p>
+            </div>
+        </section>
+
+        <section class="resume-section">
+            <h3>Achievements</h3>
+            <ul class="styled-list">
+                <li>came top 5 in the hireexperience (this event itself) last year</li>
+                <li>Secured rank in top 10% in college coding contest “Byte Brigade” .</li>
+                <li>Completed online course on Java Programming (Coursera/Udemy etc.).</li>
+            </ul>
+        </section>
+
+        <section class="resume-section">
+            <h3>Strengths</h3>
+            <ul class="styled-list">
+                <li>Quick learner and adaptive</li>
+                <li>Good problem-solving skills</li>
+                <li>Team player with good communication</li>
+            </ul>
+        </section>
+
+        <section class="resume-section">
+            <h3>Personal Details</h3>
+            <ul class="styled-list">
+                <li>Date of Birth: 09-04-2004</li>
+                <li>Languages Known: English, Hindi, [kannada]</li>
+                <li>Hobbies: animal petting,Listening to music</li>
+            </ul>
+        </section>
+
+        <section class="resume-section">
+            <h3>Declaration</h3>
+            <p>
+                I hereby declare that the above information is true and correct to the best of my knowledge and belief.
+            </p>
+            <p class="align-right">Signature<br><strong>Yashraj KS</strong></p>
+        </section>
+    </section>
+    <!-- ==== Certificates Section (add into resume.html) ==== -->
+<section class="resume-section">
+    <h3>Certificates</h3>
+
+    <div class="certificates-grid">
+        <figure class="cert-card">
+            <img src="assets/ai_certificate.jpg" alt="Artificial Intelligence Fundamentals - IBM" data-caption="Artificial Intelligence Fundamentals — IBM SkillsBuild (Issued Oct 30, 2025)">
+            <figcaption>Artificial Intelligence Fundamentals — IBM SkillsBuild</figcaption>
+        </figure>
+
+        <figure class="cert-card">
+            <img src="assets/java_certificate.jpg" alt="Programming In Java - NPTEL" data-caption="Programming in Java — NPTEL / IIT Kharagpur (Score: 86%)">
+            <figcaption>Programming In Java — NPTEL (IIT Kharagpur)</figcaption>
+        </figure>
+
+        <figure class="cert-card">
+            <img src="assets/latex_certificate.jpg" alt="LaTeX Document Preparation" data-caption="LaTeX Document Preparation — Certificate of Completion (Oct 26, 2023)">
+            <figcaption>LaTeX Document Preparation</figcaption>
+        </figure>
+    </div>
+
+    <!-- Lightbox modal (hidden by default) -->
+    <div id="certLightbox" class="lightbox" aria-hidden="true">
+        <div class="lightbox-content" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+            <img id="lightboxImg" src="" alt="">
+            <div id="lightboxCaption" class="lightbox-caption"></div>
+            <a id="lightboxDownload" class="btn outline lightbox-download" download>Download Image</a>
+        </div>
+    </div>
+</section>
+<!-- ==== End Certificates Section ==== -->
+</main>
+
+<footer class="site-footer">
+    <p>&copy; <span id="year"></span> Yashraj KS. All Rights Reserved.</p>
+</footer>
+
+<script>
+    // Very simple JavaScript – no complex logic
+
+document.addEventListener("DOMContentLoaded", function () {
+    // 1. Dynamic greeting on home page
+    var greetingEl = document.getElementById("greeting");
+    if (greetingEl) {
+        var now = new Date();
+        var hour = now.getHours();
+        var message = "Hello!";
+
+        if (hour >= 5 && hour < 12) {
+            message = "Good Morning!";
+        } else if (hour >= 12 && hour < 17) {
+            message = "Good Afternoon!";
+        } else {
+            message = "Good Evening!";
+        }
+        greetingEl.textContent = message;
+    }
+
+    // 2. Set current year in footer
+    var yearEl = document.getElementById("year");
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
+
+    // 3. Simple click event for Download button on resume page
+    var downloadBtn = document.getElementById("downloadBtn");
+    if (downloadBtn) {
+        downloadBtn.addEventListener("click", function () {
+            alert("In a real website, this button would download your resume as a PDF.");
+        });
+    }
+});
+// ===== Certificates lightbox logic (append to script.js) =====
+document.addEventListener("DOMContentLoaded", function () {
+    // already included code (greeting/year/download button)...
+
+    // Lightbox elements
+    var lightbox = document.getElementById("certLightbox");
+    var lightboxImg = document.getElementById("lightboxImg");
+    var lightboxCaption = document.getElementById("lightboxCaption");
+    var lightboxClose = document.getElementById("lightboxClose");
+    var lightboxDownload = document.getElementById("lightboxDownload");
+
+    // Find all certificate images with a data-caption
+    var certImgs = document.querySelectorAll(".cert-card img[data-caption]");
+
+    certImgs.forEach(function(img) {
+        img.addEventListener("click", function () {
+            var src = img.getAttribute("src");
+            var caption = img.getAttribute("data-caption") || "";
+            // Set lightbox content
+            lightboxImg.src = src;
+            lightboxImg.alt = img.alt || "Certificate";
+            lightboxCaption.textContent = caption;
+            lightboxDownload.href = src;
+            // Show lightbox
+            lightbox.setAttribute("aria-hidden", "false");
+            // prevent page scroll behind modal
+            document.body.style.overflow = "hidden";
+        });
+    });
+
+    // Close function
+    function closeLightbox() {
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxImg.src = "";
+        lightboxCaption.textContent = "";
+        lightboxDownload.href = "#";
+        document.body.style.overflow = "";
+    }
+
+    // close button
+    if (lightboxClose) {
+        lightboxClose.addEventListener("click", closeLightbox);
+    }
+
+    // clicking outside image closes
+    if (lightbox) {
+        lightbox.addEventListener("click", function (e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+    }
+
+    // Esc key closes
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && lightbox.getAttribute("aria-hidden") === "false") {
+            closeLightbox();
+        }
+    });
+});
+</script>
+</body>
+</html>
